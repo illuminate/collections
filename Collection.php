@@ -178,7 +178,7 @@ class Collection implements ArrayAccess, Enumerable
     }
 
     /**
-     * Cross join with the given lists, returning all possible permutations.
+     * Cross join with the given lists, returning all possible combinations.
      *
      * @param  mixed  ...$lists
      * @return static
