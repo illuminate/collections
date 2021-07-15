@@ -152,6 +152,10 @@ class Arr
             return $array->offsetExists($key);
         }
 
+        if (is_object($array)) {
+            throw new InvalidArgumentException('Array must be type of Enumerable, ArrayAccess or array. Object Provided.);
+        }
+        
         return array_key_exists($key, $array);
     }
 
