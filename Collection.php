@@ -363,15 +363,16 @@ class Collection implements ArrayAccess, Enumerable
      * Get an attribute from the first item from the collection passing the given truth test.
      *
      * @param  string  $attribute
-     * @param  string  $defaultValue
+     * @param  mixed  $defaultValue
      * @param  callable|null  $callback
      * @param  mixed  $default
      * @return mixed
      */
-    public function firstAttribute(string $attribute, string $defaultValue = null, callable $callback = null, $default = null)
+    public function firstAttribute(string $attribute, $defaultValue = null, callable $callback = null, $default = null)
     {
         $item = $this->first($callback, $default);
-        return ($item || is_null($defaultValue)) ? $item->$attribute : $defaultValue;
+  
+        return $item ? $item->$attribute : $defaultValue;
     }
 
     /**
