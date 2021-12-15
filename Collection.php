@@ -1213,10 +1213,11 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     }
 
     /**
-     * Chunk the underlying collection array, and apply a callback if exists for each chunk.
+     * Chunk the collection into chunks of the given size, and apply a callback if exists for each chunk.
      *
-     * @param  int  $size
-     * @return static
+     * @param int $size
+     *
+     * @return static<int, static<TKey, TValue>>
      */
     public function chunk($size, \Closure $callback = null)
     {
