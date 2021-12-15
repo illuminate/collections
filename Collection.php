@@ -1213,12 +1213,12 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     }
 
     /**
-     * Chunk the collection into chunks of the given size.
+     * Chunk the underlying collection array, and apply a callback if exists for each chunk.
      *
      * @param  int  $size
-     * @return static<int, static<TKey, TValue>>
+     * @return static
      */
-    public function chunk($size)
+    public function chunk($size, \Closure $callback = null)
     {
         if ($size <= 0) {
             return new static;
@@ -1227,7 +1227,9 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
         $chunks = [];
 
         foreach (array_chunk($this->items, $size, true) as $chunk) {
-            $chunks[] = new static($chunk);
+            $chunks[] = isset($callback)
+                ? new static($callback($chunk))
+                : new static($chunk);
         }
 
         return new static($chunks);
