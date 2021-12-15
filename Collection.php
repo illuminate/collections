@@ -1228,7 +1228,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
 
         foreach (array_chunk($this->items, $size, true) as $chunk) {
             $chunks[] = isset($callback)
-                ? new static($callback($chunk))
+                ? $callback(new static($chunk))
                 : new static($chunk);
         }
 
