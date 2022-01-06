@@ -114,6 +114,7 @@ class Arr
             if (is_array($value) && ! empty($value)) {
                 $results = array_merge($results, static::dot($value, $prepend.$key.'.'));
             } else {
+                if(empty($value)) $value=null;
                 $results[$prepend.$key] = $value;
             }
         }
